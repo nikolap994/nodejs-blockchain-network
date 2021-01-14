@@ -1,12 +1,12 @@
 # Readme
 
 - Clone repo
-- `npm install`
-- `node npm run node1`
-- `node npm run node2`
-- `node npm run node3`
-- `node npm run node4`
-- `node npm run node5`
+- ```npm install```
+- ```node npm run node1```
+- ```node npm run node2```
+- ```node npm run node3```
+- ```node npm run node4```
+- ```node npm run node5```
 
 Here we start 5 nodes in network
 
