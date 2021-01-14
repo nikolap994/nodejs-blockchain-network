@@ -10,11 +10,13 @@
 
 Here we start 5 nodes in network
 
+```json
 "node1": "http://localhost:3001"
 "node2": "http://localhost:3002"
 "node3": "http://localhost:3003"
 "node4": "http://localhost:3004"
 "node5": "http://localhost:3005"
+```
 
 To make sure this nodes can talk to each other we have to register them in network:
 
