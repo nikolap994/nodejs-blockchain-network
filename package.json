@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon --watch src -e js src/api.js 3000 http://localhost:3000",
     "node1": "nodemon --watch src -e js src/api.js 3001 http://localhost:3001",
     "node2": "nodemon --watch src -e js src/api.js 3002 http://localhost:3002",
     "node3": "nodemon --watch src -e js src/api.js 3003 http://localhost:3003",
