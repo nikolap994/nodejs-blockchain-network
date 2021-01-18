@@ -15,6 +15,14 @@ module.exports = function (app) {
         res.render('pages/wallet.ejs');
     });
 
+    app.post("/broadcast-and-join", function(req, res) {
+        const email = req.body.email;
+        const networkURI = req.body.networkURI;
+        const nodeURI = req.body.nodeURI;
+
+        // TODO: add broadcast logic
+    });
+
     app.get('/blockchain', function (req, res) {
         res.send(bitcoin);
     });

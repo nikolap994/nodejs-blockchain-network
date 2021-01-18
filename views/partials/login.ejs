@@ -1,14 +1,18 @@
 <div class="col">
     <h4>Login to Blockchain network</h4>
-    <form>
+    <form action="/broadcast-and-join" method="POST">
         <div class="form-group">
             <label for="inputEmail">Email address</label>
-            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+            <input type="email" name="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
                 placeholder="Enter email">
         </div>
         <div class="form-group">
-            <label for="inputSite">Site URI</label>
-            <input type="text" class="form-control" id="inputSite" placeholder="Site URI">
+            <label for="inputSite">Network URI</label>
+            <input type="text" name="networkURI" class="form-control" id="networkURI" placeholder="Site URI">
+        </div>
+        <div class="form-group">
+            <label for="inputSite">Node URI</label>
+            <input type="text" name="nodeURI" class="form-control" id="nodeURI" placeholder="Site URI">
         </div>
         <br/>
         <button type="submit" class="btn btn-primary">Login</button>
