@@ -16,11 +16,41 @@ module.exports = function (app) {
     });
 
     app.post("/broadcast-and-join", function(req, res) {
-        const email = req.body.email;
-        const networkURI = req.body.networkURI;
-        const nodeURI = req.body.nodeURI;
+        const nodeUrl = req.body.nodeURI;
 
-        // TODO: add broadcast logic
+        if (bitcoin.networkNodes.indexOf(nodeUrl) == -1) {
+            bitcoin.networkNodes.push(nodeUrl);
+        }
+
+        const registerNodes = [];
+        bitcoin.networkNodes.forEach(networkNode => {
+            const requestOptions = {
+                uri: networkNode + '/register-node',
+                method: 'POST',
+                body: { nodeUrl: nodeUrl },
+                json: true
+            }
+
+            registerNodes.push(reqPromise(requestOptions));
+        });
+
+        Promise.all(registerNodes)
+            .then(data => {
+                const bulkRegisterOptions = {
+                    uri: nodeUrl + '/register-bulk-nodes',
+                    method: 'POST',
+                    body: { networkNodes: [...bitcoin.networkNodes, bitcoin.nodeUrl] },
+                    json: true
+                }
+
+                return reqPromise(bulkRegisterOptions);
+            }).then(data => {
+                res.json(
+                    {
+                        message: 'A node registers with network successfully!'
+                    }
+                );
+            });
     });
 
     app.get('/blockchain', function (req, res) {
