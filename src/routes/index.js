@@ -44,12 +44,8 @@ module.exports = function (app) {
                 }
 
                 return reqPromise(bulkRegisterOptions);
-            }).then(data => {
-                res.json(
-                    {
-                        message: 'A node registers with network successfully!'
-                    }
-                );
+            }).then( data => {
+                res.redirect('wallet');
             });
     });
 

@@ -5,15 +5,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../partials/header') %>
-    <title>Wallet</title>
+        <title>Wallet</title>
 </head>
 
 <body>
     <div class="container">
         <div class="row">
-            Dashboard
+            <div class="col" id="networkNodes"></div>
+            <div class="col" id="chain"></div>
         </div>
     </div>
+    <style>
+        body {
+            padding-top: 20px;
+        }
+    </style>
+    <script>
+        function getBlockchainInfo() {
+            jQuery.get("/blockchain", function (data) {
+                var chain = data.chain;
+                var networkNodes = data.networkNodes;
+
+                jQuery("#chain").empty();
+                jQuery.each(chain, function (key, value) {
+                    console.log(key, value);
+                    jQuery("#chain").append(
+                        "<div class='card'>" +
+                        "<div class='card-body'>" +
+                        "<div class='card-text'>Hash: " + value.hash + "</div>" +
+                        "<div class='card-text'>Index: " + value.index + "</div>" +
+                        "<div class='card-text'>Previous Block Hash:" + value.prevBlockHash + "</div>" +
+                        "<div class='card-text'>Nonce: " + value.nonce + "</div>" +
+                        "</div>" +
+                        "</div>"
+                    );
+                });
+
+                jQuery("#networkNodes").empty();
+                jQuery.each(networkNodes, function (key, value) {
+                    jQuery("#networkNodes").append(
+                        "<div class='card'>" +
+                        "<div class='card-body'>" +
+                        "<div class='card-text'>Network Node: " + value + "</div>" +
+                        "</div>" +
+                        "</div>"
+                    );
+                });
+            });
+        }
+        jQuery(document).ready(function ($) {
+            getBlockchainInfo();
+            setInterval(function () {
+                getBlockchainInfo();
+            }, 5000);
+        });
+    </script>
 </body>
 
 </html>
